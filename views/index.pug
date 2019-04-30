@@ -4,16 +4,20 @@ html(lang="it")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        link(rel="stylesheet",href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css")
+        link(rel="stylesheet", href="main.css")
         title RPT
     body
-        .container
-            h1 RPT
-
-            form(action="",method="get")
-                .logss
-                label(for='exampleMessage') Log ~
-                textarea#exampleMessage.u-full-width(placeholder='Arma…')
-                input.button-primary(type='submit', value='Aggiorna')
-        script(src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js")
-        script(src="main.js")
+        header
+            h1 RPT Logs
+            input(type="text",placeholder="Filters")
+            select
+                option(value="log1.rpt") Log1
+                option(value="log2.rpt") Log2
+                option(value="log3.rpt") Log3
+                option(value="log4.rpt") Log4
+                option(value="log5.rpt") Log5
+        main
+            textarea(autofocus)
+            .butt
+                input(type="button",value="Get link") 
+                input(type="button",value="Download") 
