@@ -18,7 +18,7 @@ async function init() {
 };
 
 function fetchRptList() {
-    return fetch('/getRptList').then(data => data.json()).then(rpts => rpts.forEach(rpt => {
+    return fetch('/getRptList').then(data => data.json()).then(rpts => rpts.reverse()).then(rpts => rpts.forEach(rpt => {
         const option = document.createElement('OPTION');
         option.value = rpt.rpt;
         option.textContent = rpt.name;
