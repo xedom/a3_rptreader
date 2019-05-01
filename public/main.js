@@ -1,6 +1,6 @@
 const rptfilter = document.querySelector('input#rptfilter');
 const rptlist = document.querySelector('select#rptlist');
-const rptlog = document.querySelector('textarea#rptlog');
+const rptlogText = document.querySelector('textarea#rptlogText');
 const rptgetlink = document.querySelector('input#rptgetlink');
 const rptdownload = document.querySelector('input#rptdownload');
 const rptautosync = document.querySelector('i#rptautosync');
@@ -27,12 +27,13 @@ function fetchRptList() {
 
 function fetchRptLog() {
     const data = { rpt: rptlist.selectedOptions[0].value };
+    console.log(data.rpt);
     return fetch('/getRptLog', {
         method: 'post',
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" }
     }).then(data => data.json()).then(rpt => {
-        rptlog.textContent = rpt.rptlog;
+        rptlogText.textContent = rpt.rptlog;
     });
 };
 
