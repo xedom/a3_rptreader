@@ -13,6 +13,7 @@ async function init() {
     await fetchRptLog();
     rptlist.addEventListener('change', fetchRptLog);
     rptautosync.addEventListener('click', rptAutoupdate);
+    rptdownload.addEventListener('click', downloadrptlog);
 };
 
 function fetchRptList() {
@@ -45,4 +46,22 @@ function rptAutoupdate({ target }) {
         target.classList.add('active');
         autoSyncRpt = setInterval(fetchRptLog, 1000);
     };
+};
+
+function downloadrptlog() {
+    const data = { rpt: rptlist.selectedOptions[0].value };
+    return fetch('/DownloadRptLog', {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+    }).then(response => response.blob())
+    .then(rpt => {
+        var url = window.URL.createObjectURL(rpt);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = `${rptlist.selectedOptions[0].text}.txt`;
+        document.body.appendChild(a);
+        a.click();    
+        a.remove();
+    });
 };
