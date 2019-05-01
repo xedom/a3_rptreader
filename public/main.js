@@ -14,6 +14,7 @@ async function init() {
     rptlist.addEventListener('change', fetchRptLog);
     rptautosync.addEventListener('click', rptAutoupdate);
     rptdownload.addEventListener('click', downloadrptlog);
+    rptgetlink.addEventListener('click', getlinkrptlog);
 };
 
 function fetchRptList() {
@@ -28,7 +29,6 @@ function fetchRptList() {
 
 function fetchRptLog() {
     const data = { rpt: rptlist.selectedOptions[0].value };
-    console.log(data.rpt);
     return fetch('/getRptLog', {
         method: 'post',
         body: JSON.stringify(data),
@@ -50,7 +50,7 @@ function rptAutoupdate({ target }) {
 
 function downloadrptlog() {
     const data = { rpt: rptlist.selectedOptions[0].value };
-    return fetch('/DownloadRptLog', {
+    return fetch('/downloadRptLog', {
         method: 'post',
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" }
@@ -63,5 +63,19 @@ function downloadrptlog() {
         document.body.appendChild(a);
         a.click();    
         a.remove();
+    });
+};
+
+function getlinkrptlog() {
+    const data = { 
+        rpt: rptlist.selectedOptions[0].value,
+        name: rptlist.selectedOptions[0].text
+    };
+    return fetch('/getLinkRptLog', {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+    }).then(data => data.json()).then(rpt => {
+        window.open(rpt.rpturl,'_blank');
     });
 };

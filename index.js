@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cfg = require('./config.json');
-const { getRptList, getRptLog } = require('./utils');
+const { getRptList, getRptLog, publishRptLog } = require('./utils');
 const path = require('path');
 
 app.use(express.static(__dirname + '/public'));
@@ -23,11 +23,20 @@ app.post('/getRptLog', async (req, res) => {
     return res.json({ rptlog });
 });
 
-app.post('/DownloadRptLog', (req, res) => {
+app.post('/downloadRptLog', (req, res) => {
     const rptlog = path.resolve(cfg.logsPath,req.body.rpt);
-    console.log(cfg.logsPath,req.body.rpt);
-    // res.download(cfg.logsPath,req.body.rpt);
     res.download(rptlog);
+});
+
+app.post('/getLinkRptLog', async (req, res) => {
+    await publishRptLog(req.body.name, cfg.logsPath);
+    return res.json({ rpturl: `/log/${req.body.name}` });
+});
+
+app.get('/log/:id', (req, res) => {
+    const log = path.resolve(__dirname,'public','logs',req.params.id);
+    res.set('Content-Type', 'text/plain');
+    return res.sendFile(log);
 });
 
 app.listen(cfg.port, () => console.log(`[Server] > RPT Reader started on port: ${cfg.port}`));

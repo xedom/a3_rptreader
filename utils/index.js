@@ -21,4 +21,16 @@ function getRptLog(rpt, logspath) {
     return rptLog;
 };
 
-module.exports = { getRptList, getRptLog }
+async function publishRptLog(rpt, logspath) {
+    const publicPath = path.resolve(__dirname,'..','public','logs');
+    await fs.readdir(publicPath, err => {
+        if (err) return fs.mkdirSync(publicPath);
+    });
+    const rootPath = path.resolve(logspath,rpt+'.rpt');
+    const destPath = path.resolve(publicPath,rpt);
+
+    await fs.copyFileSync(rootPath,destPath);
+    return "";
+};
+
+module.exports = { getRptList, getRptLog, publishRptLog }
