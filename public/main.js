@@ -9,6 +9,7 @@ window.addEventListener('load', init);
 async function init() {
     await fetchRptList();
     await fetchRptLog();
+    rptlist.addEventListener('change', fetchRptLog);
 };
 
 function fetchRptList() {
