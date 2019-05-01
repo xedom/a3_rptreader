@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #000000;
+    color: #eee;
+    height: 100vh;
+    width: 100%;
+
+
+}
+
+.cont {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginBox {
+    border-radius: .5em;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #212121;
+    padding: 4em 2em;
+}
+
+#loginBox h1 {
+    margin-bottom: 1em;
+}
+
+#loginBox input[type="submit"] {
+    align-self: flex-end;
+    margin-top: 1em;
+    padding: .3em 1em;
+    cursor: pointer;
+}
