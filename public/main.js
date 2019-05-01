@@ -3,6 +3,8 @@ const rptlist = document.querySelector('select#rptlist');
 const rptlog = document.querySelector('textarea#rptlog');
 const rptgetlink = document.querySelector('input#rptgetlink');
 const rptdownload = document.querySelector('input#rptdownload');
+const rptautosync = document.querySelector('i#rptautosync');
+var autoSyncRpt;
 
 window.addEventListener('load', init);
 
@@ -10,6 +12,7 @@ async function init() {
     await fetchRptList();
     await fetchRptLog();
     rptlist.addEventListener('change', fetchRptLog);
+    rptautosync.addEventListener('click', rptAutoupdate);
 };
 
 function fetchRptList() {
@@ -31,4 +34,14 @@ function fetchRptLog() {
     }).then(data => data.json()).then(rpt => {
         rptlog.textContent = rpt.rptlog;
     });
+};
+
+function rptAutoupdate({ target }) {
+    if (target.className.includes('active')) {
+        target.classList.remove('active');
+        clearInterval(autoSyncRpt);
+    } else {
+        target.classList.add('active');
+        autoSyncRpt = setInterval(fetchRptLog, 1000);
+    };
 };
