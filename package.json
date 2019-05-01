@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xedom/rptTest.git"
+    "url": "git+https://github.com/xedom/arma_rptreader.git"
   },
   "keywords": [
     "arma",
@@ -26,7 +26,7 @@
   "author": "Kaj Oskar Rusilowski",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xedom/rptTest/issues"
+    "url": "https://github.com/xedom/arma_rptreader/issues"
   },
-  "homepage": "https://github.com/xedom/rptTest#readme"
+  "homepage": "https://github.com/xedom/arma_rptreader#readme"
 }
