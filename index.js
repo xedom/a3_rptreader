@@ -3,7 +3,7 @@ const app = express();
 const cfg = require('./config.json');
 const { getRptList, getRptLog, publishRptLog } = require('./utils');
 const path = require('path');
-var crypto = require('crypto');
+const crypto = require('crypto');
 
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'pug');
@@ -16,19 +16,17 @@ function auth(req, res, next) {
     else return res.redirect('/login');
 };
 
-app.get('/', auth, (req, res) => { res.render('index.pug'); });
+app.get('/', auth, (req, res) => {
+    res.render('index.pug');
+});
 
 app.get('/getRptList', auth, async (req, res) => {
     const list = await getRptList(cfg.logsPath);
-
     return res.json(list);
 });
 
 app.post('/getRptLog', auth, async (req, res) => {
     const rptlog = await getRptLog(req.body.rpt, cfg.logsPath);
-
-    console.log(req.body);
-
     return res.json({ rptlog });
 });
 
@@ -53,7 +51,6 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-    console.log(req.body.pass);
     const token = req.body.pass;
     const hash = crypto.createHash('sha256').update(token).digest('hex');
     res.json({ token: hash });

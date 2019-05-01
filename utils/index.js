@@ -17,7 +17,6 @@ function getRptList(logspath) {
 function getRptLog(rpt, logspath) {
     const rptpath = path.resolve(logspath, rpt);
     const rptLog = fs.readFileSync(rptpath,"utf-8");
-    
     return rptLog;
 };
 
@@ -25,12 +24,12 @@ async function publishRptLog(rpt, logspath) {
     const publicPath = path.resolve(__dirname,'..','public','logs');
     await fs.readdir(publicPath, err => {
         if (err) return fs.mkdirSync(publicPath);
+        return;
     });
-    const rootPath = path.resolve(logspath,rpt+'.rpt');
-    const destPath = path.resolve(publicPath,rpt);
-
+    const rootPath = await path.resolve(logspath,rpt+'.rpt');
+    const destPath = await path.resolve(publicPath,rpt);
     await fs.copyFileSync(rootPath,destPath);
-    return "";
+    return;
 };
 
 module.exports = { getRptList, getRptLog, publishRptLog }
