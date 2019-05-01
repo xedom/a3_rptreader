@@ -17,4 +17,13 @@ async function init() {
             rptlist.append(option);
         });
     });
+
+    const data = { rpt: rptlist.selectedOptions[0].value };
+    await fetch('/getRptLog', {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+    }).then(data => data.json()).then(rpt => {
+        rptlog.textContent = rpt.rptlog;
+    });
 };
