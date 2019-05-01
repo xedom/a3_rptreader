@@ -14,4 +14,11 @@ function getRptList(logspath) {
     return mappedRptList;
 };
 
-module.exports = { getRptList }
+function getRptLog(rpt, logspath) {
+    const rptpath = path.resolve(logspath, rpt);
+    const rptLog = fs.readFileSync(rptpath,"utf-8");
+    
+    return rptLog;
+};
+
+module.exports = { getRptList, getRptLog }
