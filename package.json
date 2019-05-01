@@ -1,7 +1,7 @@
 {
   "name": "arma_rptreader",
   "version": "1.1.0",
-  "description": "Simple app to read rpt logs of arma 3",
+  "description": "Simple web app to read rpt logs of arma 3",
   "main": "index.js",
   "dependencies": {
     "express": "^4.16.4",
