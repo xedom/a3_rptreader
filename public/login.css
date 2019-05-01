@@ -39,3 +39,7 @@ body {
     padding: .3em 1em;
     cursor: pointer;
 }
+
+#loginBox input[type="password"] {
+    padding: .3em 1em;
+}
