@@ -46,6 +46,8 @@ main textarea {
     outline: none;
     border: none;
     resize: none;
+
+    line-height: 1.3em;
 }
 
 .butt {

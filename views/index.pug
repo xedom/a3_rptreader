@@ -11,13 +11,8 @@ html(lang="it")
             h1 RPT Logs
             input#rptfilter(type="text",placeholder="Filters")
             select#rptlist
-                option(value="log1.rpt") Log1
-                option(value="log2.rpt") Log2
-                option(value="log3.rpt") Log3
-                option(value="log4.rpt") Log4
-                option(value="log5.rpt") Log5
         main
-            textarea#rptlog(autofocus)
+            textarea#rptlog(autofocus, spellcheck="false",wrap="off")
             .butt
                 input#rptgetlink(type="button",value="Get link") 
                 input#rptdownload(type="button",value="Download") 
