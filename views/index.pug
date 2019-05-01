@@ -9,15 +9,15 @@ html(lang="it")
     body
         header
             h1 RPT Logs
-            input(type="text",placeholder="Filters")
-            select
+            input#rptfilter(type="text",placeholder="Filters")
+            select#rptlist
                 option(value="log1.rpt") Log1
                 option(value="log2.rpt") Log2
                 option(value="log3.rpt") Log3
                 option(value="log4.rpt") Log4
                 option(value="log5.rpt") Log5
         main
-            textarea(autofocus)
+            textarea#rptlog(autofocus)
             .butt
-                input(type="button",value="Get link") 
-                input(type="button",value="Download") 
+                input#rptgetlink(type="button",value="Get link") 
+                input#rptdownload(type="button",value="Download") 
