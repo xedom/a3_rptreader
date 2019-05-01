@@ -1,15 +1,32 @@
 {
-  "name": "testttt",
-  "version": "1.0.0",
-  "description": "",
+  "name": "arma_rptreader",
+  "version": "1.1.0",
+  "description": "Simple app to read rpt logs of arma 3",
   "main": "index.js",
-  "scripts": {
-    "start": "nodemon"
-  },
-  "author": "Kaj Oskar Rusilowski",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
     "pug": "^2.0.3"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xedom/rptTest.git"
+  },
+  "keywords": [
+    "arma",
+    "rpt",
+    "logger",
+    "log",
+    "reader"
+  ],
+  "author": "Kaj Oskar Rusilowski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xedom/rptTest/issues"
+  },
+  "homepage": "https://github.com/xedom/rptTest#readme"
 }
