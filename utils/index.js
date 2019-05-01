@@ -10,7 +10,6 @@ function getRptList(logspath) {
         name: path.basename(rpt,'.rpt'),
         path: logspath+rpt
     }));
-
     return mappedRptList;
 };
 
