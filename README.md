@@ -1,4 +1,4 @@
-# Rpt Reader
+# RPT Reader
 
 [![License](https://img.shields.io/bower/l/bootstrap.svg)](/LICENSE)
 
@@ -10,6 +10,8 @@ create `config.json` in the root folder
 
 ```json
 {
-    "port": 8000
+    "port": 8000,
+    "logsPath": "/your/path/of/rptlogs",
+    "password": "yourpassword"
 }
 ```

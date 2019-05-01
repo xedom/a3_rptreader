@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cfg = require('./config.json');
 const utils = require('./utils');
 
 app.use(express.static(__dirname + '/public'));
@@ -10,4 +11,4 @@ app.get('/getRptList', (req, res) => {
     res.json('test');
 });
 
-app.listen(8000, () => console.log('Server Avviato'));
+app.listen(cfg.port, () => console.log(`[Server] > RPT Reader started on port: ${cfg.port}`));
