@@ -4,6 +4,7 @@ const rptlogText = document.querySelector('textarea#rptlogText');
 const rptgetlink = document.querySelector('input#rptgetlink');
 const rptdownload = document.querySelector('input#rptdownload');
 const rptautosync = document.querySelector('i#rptautosync');
+var rptLogcache = "";
 var autoSyncRpt;
 
 window.addEventListener('load', init);
@@ -35,6 +36,7 @@ function fetchRptLog() {
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" }
     }).then(data => data.json()).then(rpt => {
+        rptLogcache = rpt.rptlog;
         rptlogText.textContent = rpt.rptlog;
     });
 };
@@ -82,8 +84,7 @@ function getlinkrptlog() {
 };
 
 function filterFNRpt(e) {
-    const rows = (rptlogText.textContent).split(/\n/g);
-    
-    const fil = rows.filter(row => row.includes(e.target.value));
-    // rptlogText.textContent(().join('\n'));
+    const rows = (rptLogcache).split(/\n/g);
+    const fil = rows.filter(row => (row.toLowerCase()).includes(e.target.value.toLowerCase()));
+    rptlogText.textContent = fil.join('\n');
 };
