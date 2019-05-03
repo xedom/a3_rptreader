@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 
 function auth(req, res, next) {
     const masterPass = crypto.createHash('sha256').update(cfg.password).digest('hex');
-    if (masterPass === req.headers.cookie) return next()
+    if (req.headers.cookie.includes(masterPass)) return next()
     else return res.redirect('/login');
 };
 
