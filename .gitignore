@@ -1,4 +1,6 @@
 /node_modules/
+*/lo/
+*/log/
 
 package-lock.json
 config.json

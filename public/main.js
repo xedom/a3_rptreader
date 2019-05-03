@@ -15,6 +15,7 @@ async function init() {
     rptautosync.addEventListener('click', rptAutoupdate);
     rptdownload.addEventListener('click', downloadrptlog);
     rptgetlink.addEventListener('click', getlinkrptlog);
+    rptfilter.addEventListener('keyup',filterFNRpt);
 };
 
 function fetchRptList() {
@@ -78,4 +79,11 @@ function getlinkrptlog() {
     }).then(data => data.json()).then(rpt => {
         window.open(rpt.rpturl,'_blank');
     });
+};
+
+function filterFNRpt(e) {
+    const rows = (rptlogText.textContent).split(/\n/g);
+    
+    const fil = rows.filter(row => row.includes(e.target.value));
+    // rptlogText.textContent(().join('\n'));
 };
