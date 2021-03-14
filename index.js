@@ -12,8 +12,10 @@ app.use(express.urlencoded({ extended: false }));
 
 function auth(req, res, next) {
     const masterPass = crypto.createHash('sha256').update(cfg.password).digest('hex');
-    if (req.headers.cookie.includes(masterPass)) return next()
-    else return res.redirect('/login');
+    if (req.headers.cookie && req.headers.cookie.includes(masterPass))
+        return next()
+    else
+        return res.redirect('/login');
 };
 
 app.get('/', auth, (req, res) => {
@@ -51,9 +53,12 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
+    if (!req.body.pass)
+        return res.redirect('/login');
+    
     const token = req.body.pass;
     const hash = crypto.createHash('sha256').update(token).digest('hex');
-    res.json({ token: hash });
+    return res.json({ token: hash });
 });
 
 app.listen(cfg.port, () => console.log(`[Server] > RPT Reader started on port: ${cfg.port}`));
